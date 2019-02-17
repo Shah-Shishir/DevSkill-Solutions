@@ -1,8 +1,8 @@
 /***
 
             Bismillahir Rahmanir Rahim
-            Read the name of Allah, who created you!!!
-            Author : Shah Newaj Rabbi Shishir
+            Read in the name of Allah, who created you!!!
+            Author : Shah Newaj Rabbi Shishir,
             Department of CSE, City University, Bangladesh.
 
 ***/
@@ -10,58 +10,66 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-#define sf scanf
-#define pf printf
-#define scase sf ("%d",&tc)
-#define sn sf ("%d",&n)
-#define whilecase while (tc--)
-#define eof while (cin >> n)
-#define forloop for (pos=1; pos<=tc; pos++)
-#define arrayloop (i=0; i<n; i++)
-#define cinstr cin >> str
-#define getstr getline (cin,str)
-#define pcase pf ("Case %d: ",pos)
-#define pb push_back
-#define in insert
+#define ebar_khela_hoppe    int main (void)
+#define bair_ho             return 0
+#define sf                  scanf
+#define pf                  printf
+#define ssf                 sscanf
+#define spf                 sprintf
+#define fsf                 fscanf
+#define fpf                 fprintf
+#define fast                ios_base::sync_with_stdio(0),cin.tie(0),cout.tie(0)
+#define scase               sf ("%d",&tc)
+#define sn                  sf ("%d",&n)
+#define whilecase           while (tc--)
+#define eof                 while (cin >> n)
+#define forloop             for (pos=1; pos<=tc; pos++)
+#define arrayloop           for (i=0; i<n; i++)
+#define cinstr              cin >> str
+#define getstr              getline (cin,str)
+#define pcase               pf ("Case %d: ",pos)
+#define vi                  vector <int>
+#define si                  set <int>
+#define vs                  vector <string>
+#define pii                 pair <int,int>
+#define mii                 map <int,int>
+#define pb                  push_back
+#define in                  insert
+#define llu                 unsigned long long
+#define lld                 long long
+#define U                   unsigned int
+#define endl                "\n"
 
-const int MAX = 10000001;
+int SetBit (int n, int x) { return n | (1 << x); }
+int ClearBit (int n, int x) { return n & ~(1 << x); }
+int ToggleBit (int n, int x) { return n ^ (1 << x); }
+bool CheckBit (int n, int x) { return (bool)(n & (1 << x)); }
+
+const int MAX = 10000100;
 bool prime[MAX];
-vector <unsigned int> v;
+vector <U> v;
 
 void sieve ()
 {
-    unsigned int i,j;
-
-    prime[0] = prime[1] = true;
+    U i,j;
 
     v.pb(2);
 
-    for (i=4; i<=MAX; i+=2)
-        prime[i] = true;
-
     for (i=3; i*i<=MAX; i+=2)
-    {
         if (!prime[i])
-        {
-            v.pb(i);
-
             for (j=i*i; j<=MAX; j+=2*i)
                 prime[j] = true;
-        }
-    }
 
-    for (i=3163; i<=MAX; i+=2)
+    for (i=3; i<=MAX; i+=2)
         if (!prime[i])
             v.pb(i);
-
-    return;
 }
 
 int main (void)
 {
-    unsigned long long t,n,i,len,l,a;
-
     sieve ();
+
+    llu t,n,i,len,l,a;
 
     sf ("%llu",&t);
 
@@ -69,7 +77,7 @@ int main (void)
     {
         sf ("%llu",&n);
 
-        vector <unsigned int> f;
+        vector <U> f;
 
         if (n == 1)
             pf ("No\n");
@@ -93,31 +101,27 @@ int main (void)
                 pf ("Yes\n");
             else
             {
-                int pos,j;
+                int p,j;
                 bool k = true;
 
-                for (i=0; i<len; i++)
-                {
-                    if (a == v[i])
-                    {
-                        pos = i;
-                        break;
-                    }
-                }
+                p = upper_bound(v.begin(),v.end(),a)-v.begin();
+                --p;
 
-                for (i=pos+1,j=1; i<len,j<l; i++,j++)
+                for (i=p,j=0; j<l; i++,j++)
                 {
                     if (v[i] != f[j])
                     {
                         k = false;
+                        pf ("No");
                         break;
                     }
                 }
 
-                if (k == true)
-                    pf ("Yes\n");
-                else
-                    pf ("No\n");
+
+                if (k)
+                    pf ("Yes");
+
+                pf ("\n");
             }
         }
     }
