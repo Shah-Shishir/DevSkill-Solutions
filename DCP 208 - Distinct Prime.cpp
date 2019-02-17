@@ -69,7 +69,7 @@ int main (void)
 {
     sieve ();
 
-    llu t,n,i,len,l,a;
+    llu t,n,i,l,a;
 
     sf ("%llu",&t);
 
@@ -95,34 +95,28 @@ int main (void)
             if (n > 2)
                 f.pb(n);
 
-            len = v.size(), l = f.size(), a = f[0];
+            l = f.size(), a = f[0];
 
-            if (l == 1)
-                pf ("Yes\n");
-            else
+            int p,j;
+            bool k = true;
+
+            p = upper_bound(v.begin(),v.end(),a)-v.begin();
+            --p;
+
+            for (i=p,j=0; j<l; i++,j++)
             {
-                int p,j;
-                bool k = true;
-
-                p = upper_bound(v.begin(),v.end(),a)-v.begin();
-                --p;
-
-                for (i=p,j=0; j<l; i++,j++)
+                if (v[i] != f[j])
                 {
-                    if (v[i] != f[j])
-                    {
-                        k = false;
-                        pf ("No");
-                        break;
-                    }
+                    k = false;
+                    pf ("No");
+                    break;
                 }
-
-
-                if (k)
-                    pf ("Yes");
-
-                pf ("\n");
             }
+
+            if (k)
+                pf ("Yes");
+
+            pf ("\n");
         }
     }
 
